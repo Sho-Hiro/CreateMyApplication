@@ -22,8 +22,8 @@ Route::get('/', function () {
     return view('myApplication/home');
 });
 Route::get('/dashboard', function () {
-    return view('dashboard');
-    // return view('');
+    // return view('dashboard');
+    return view('/myApplication/search-restaurant'); //ログイン後search-restaurantに移動
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

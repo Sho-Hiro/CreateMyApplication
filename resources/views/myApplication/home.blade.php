@@ -21,7 +21,7 @@
         </style>
     </head>
     <body>
-        <h1>いっぱい食べて、たくさんの幸せを</h1>
+        <h1>いっぱい食べて、いっぱい幸せ</h1>
         <h1>FooPa</h1>
         <div class="login">
         <a href="/login">ログイン</a>
