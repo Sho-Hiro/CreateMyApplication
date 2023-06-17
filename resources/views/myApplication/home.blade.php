@@ -25,6 +25,7 @@
         <h1>FooPa</h1>
         <div class="login">
         <a href="/login">ログイン</a>
+        <a href="/register">ユーザー登録</a>
         </div>
     </body>
 </html>
