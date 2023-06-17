@@ -19,10 +19,11 @@ use App\Http\Controller\LoginController;
 //     return view('welcome');
 // });
 Route::get('/', function () {
-    return view('login/home');
+    return view('myApplication/home');
 });
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // return view('dashboard');
+    return view('/myApplication/search-restaurant'); //ログイン後search-restaurantに移動
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
