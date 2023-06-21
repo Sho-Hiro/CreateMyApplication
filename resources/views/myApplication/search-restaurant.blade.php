@@ -21,8 +21,10 @@
         </style>
     </head>
     <body>
-        <h1>いっぱい食べて、たくさんの幸せを</h1>
-        <h1>FooPa</h1>
+        <h3>FooPa</h3>
+        <div id="map" style="width:60%; height:40%;">
         
+         <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config("services.google-map.apikey")}}&callback=initMap">
+         </script>
     </body>
 </html>
