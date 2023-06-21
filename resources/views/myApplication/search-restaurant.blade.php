@@ -21,9 +21,10 @@
         </style>
     </head>
     <body>
-        <div id="map" width="60%" height="30%"></div>
+        <h3>FooPa</h3>
+        <div id="map" style="width:60%; height:40%;">
         
-         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQwz_rYk42Xe_NGhdSPGo6uKa_Xy44Keg&callback=initMap">
+         <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config("services.google-map.apikey")}}&callback=initMap">
          </script>
     </body>
 </html>
