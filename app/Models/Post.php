@@ -13,4 +13,9 @@ class Post extends Model
         'title',
         'body',
     ];
+    
+    public function postcategory()   
+    {
+        return $this->belongTo(PostCategory::class);  
+    }
 }
