@@ -21,6 +21,6 @@
         </style>
     </head>
     <body>
-       <a href=''></a>
+       <a href='/myApplication/post_create'>投稿作成</a>
     </body>
 </html>
