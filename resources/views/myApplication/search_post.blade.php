@@ -21,19 +21,6 @@
         </style>
     </head>
     <body>
-        <header>
-            <b>FooPa</b>
-        </header>
-        <div class='list'>
-            <a href=''>お気に入り</a>
-            <a href='/myApplication/search_post'>投稿</a>
-            <a href=''>記録</a>
-        </div>
-        <div id="map" style="width:60%; height:40%;"></div>
-        
-        <script src="{{ asset('/public/js/map.js') }}"></script>
-        </script>
-        <script async defer src="{{config('services.google-map.apikey')}}&callback=initMap">
-        </script>
+       <a href=''></a>
     </body>
 </html>
