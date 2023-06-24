@@ -21,4 +21,11 @@ class PostController extends Controller
         $post->fill($input)->save();
         return redirect('/myApplication/search_post' . $post->id);
     }
+    public function tryApi(){
+
+        // .envのAPIキーを変数へ
+        $api_key = config('app.api_key');
+    
+        return view('myApplication/search-restaurant')->with(['api_key' => $api_key]);
+    }
 }

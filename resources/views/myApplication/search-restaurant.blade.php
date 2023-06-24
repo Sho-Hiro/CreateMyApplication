@@ -33,7 +33,7 @@
         
         <script src="{{ asset('/public/js/map.js') }}"></script>
         </script>
-        <script async defer src="{{config('services.google-map.apikey')}}&callback=initMap">
+        <script async defer src="{{config('app.apikey')}}&callback=initMap">
         </script>
     </body>
 </html>
