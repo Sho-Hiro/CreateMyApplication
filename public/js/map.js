@@ -1,4 +1,11 @@
- function initMap() {
+var map;
+var opt;
+var mapObj;
+var marker;
+var google;
+
+
+function initMap() {
                 map = document.getElementById("map");
                 
                 // 東京タワーの緯度、経度を変数に入れる

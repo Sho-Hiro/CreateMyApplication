@@ -1,8 +1,12 @@
+import './bootstrap';
+import '../css/app.css';
+
 var map;
 var opt;
 var mapObj;
-var google;
 var marker;
+var google;
+
 
 function initMap() {
                 map = document.getElementById("map");

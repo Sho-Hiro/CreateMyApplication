@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RecordController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,9 @@ Route::get('/', function () {
     return view('myApplication/home');
 });
 Route::get('/dashboard', function () {
+    $api_key = config('app.api_key');
     // return view('dashboard');
-    return view('/myApplication/search-restaurant'); //ログイン後search-restaurantに移動
+    return view('/myApplication/search-restaurant')->with(['api_key' => $api_key]); //ログイン後search-restaurantに移動
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -33,9 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+// Route::get('/myApplication/search-restaurant', [PostController::class,'mapApi']);
 Route::get('/myApplication/search_post', [PostController::class,'search_post']);
 Route::get('/myApplication/record_money', [RecordController::class,'record_money']);
 Route::get('/myApplication/post_create', [PostController::class,'post_create']);
-Route::get('/myApplication/try_map', [PostController::class,'tryApi']);
+
 
 require __DIR__.'/auth.php';
