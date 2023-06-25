@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // Route::get('/myApplication/search-restaurant', [PostController::class,'mapApi']);
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/myApplication/search_post', [PostController::class,'search_post']);
 Route::get('/myApplication/record_money', [RecordController::class,'record_money']);
 Route::get('/myApplication/post_create', [PostController::class,'post_create']);
