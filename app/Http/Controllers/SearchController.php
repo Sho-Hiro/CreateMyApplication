@@ -18,7 +18,7 @@ class SearchController extends Controller
     {
         $query = $request->input('query'); // フォームからのクエリを取得
 
-        $apiKey = 'YOUR_API_KEY'; // Google Places APIのAPIキーを設定
+        $apiKey = config('app.api_key'); // Google Places APIのAPIキーを設定
         $client = new Client();
 
         $response = $client->get('https://maps.googleapis.com/maps/api/place/textsearch/json', [
@@ -33,4 +33,5 @@ class SearchController extends Controller
         // 検索結果をビューに渡して表示
         return view('search', ['results' => $results->results]);
     }
+    
 }

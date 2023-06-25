@@ -1,10 +1,11 @@
 var map;
 var opt;
 var mapObj;
-var marker;
 var google;
+var marker;
 
 
+                
 function initMap() {
                 map = document.getElementById("map");
                 
@@ -35,3 +36,4 @@ function initMap() {
                     title: 'tokyotower',
                 });
             }
+    
