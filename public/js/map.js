@@ -26,6 +26,7 @@ function initMap() {
     zoom: 13,
   });
   infoWindow = new google.maps.InfoWindow();
+
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {

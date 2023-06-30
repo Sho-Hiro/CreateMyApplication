@@ -41,6 +41,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/myApplication/search_post', [PostController::class,'search_post']);
 
 Route::get('/myApplication/post_create', [PostController::class,'post_create']);
-
-
+Route::get('/myApplication/record_money', [RecordController::class,'record_money']);
 require __DIR__.'/auth.php';
