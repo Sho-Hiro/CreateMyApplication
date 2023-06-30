@@ -39,6 +39,7 @@
           <button type="submit">検索</button>
         </form>
         
+        
         <div id="searchResults"></div> 
         
        
