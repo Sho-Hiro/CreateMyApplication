@@ -6,8 +6,11 @@
     </head>
     <body>
         <h1>Blog Name</h1>
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
+            <div class="image">
+                <input type="file" name="image">
+            </div>
             <div class="title">
                 <h2>Title</h2>
                 <input type="text" name="post[title]" placeholder="タイトルを入力（50字以内）" value="{{ old('post.title') }}"/>
