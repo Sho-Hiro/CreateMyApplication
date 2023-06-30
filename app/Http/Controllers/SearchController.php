@@ -31,7 +31,7 @@ class SearchController extends Controller
         $results = json_decode($response->getBody()->getContents());
 
         // 検索結果をビューに渡して表示
-        return view('search', ['results' => $results->results]);
+        return view('myApplication/search-restaurant')->with(['results' => $results]);
     }
     
 }
