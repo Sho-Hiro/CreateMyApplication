@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/myApplication/search_post', [PostController::class,'search_post']);
+Route::get('/myApplication/post_comment/{post}', [PostController::class ,'search_comment']);
 Route::get('/myApplication/post_create', [PostController::class,'post_create']);
 
 require __DIR__.'/auth.php';

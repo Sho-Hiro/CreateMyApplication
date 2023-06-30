@@ -21,22 +21,29 @@
         </style>
     </head>
     <body>
-       <a href='/myApplication/post_create'>投稿作成</a>
-       <div class='posts'>
-            @foreach ($posts as $post)
-                <div class='post'>
-                    @if($post->image_url)
-                        <div>
-                            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
-                        </div>
-                    @endif
-                    <h2 class='title'><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h2>
-                    <p class='body'>{{ $post->body }}</p>
-                </div>
-            @endforeach
+        <div>
+            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
         </div>
-        <div class='paginate'>
-            {{ $posts->links() }}
+       <h2 class="title">
+            @if($post->image_url)
+                <div>
+                    <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                </div>
+            @endif
+        </h2>
+        <div class="content">
+            <div class="category">
+                <h3>{{ $post->category->name }}</h3>
+            </div>
+            <div class="content__post">
+                <h2>{{$post->title}}</h2>
+                <p>{{ $post->body }}</p>    
+            </div>
+        </div>
+        <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div>
+        <a href="/categories/{{$post->category->id}}">{{ $post->category->name }}</a>
+        <div class="footer">
+            <a href="/">戻る</a>
         </div>
     </body>
 </html>
