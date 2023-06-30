@@ -33,4 +33,5 @@ class PostController extends Controller
         $post->fill($input)->save();
         return redirect('/myApplication/search_post' . $post->id);
     }
+
 }
