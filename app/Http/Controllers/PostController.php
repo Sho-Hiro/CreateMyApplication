@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\PostCategory;
 use Cloudinary;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -17,12 +18,13 @@ class PostController extends Controller
     {
         return view('myApplication/search_comment')->with(['post' => $post]);
     }
-     public function post_create()
+     public function post_create(PostCategory $postCategory)
     {
-        return view('myApplication/post_create');  
+        return view('myApplication/post_create')->with(['postCategories' => $postCategory->get()]);  
     }
      public function post_store(PostRequest $request,Post $post)
     { 
+        $post->user_id = \Auth::id();
         $input = $request['post'];
         
         if($request->file('image')){
@@ -31,7 +33,7 @@ class PostController extends Controller
         }
         
         $post->fill($input)->save();
-        return redirect('/myApplication/search_post' . $post->id);
+        return redirect('/myApplication/search_post');
     }
 
 }

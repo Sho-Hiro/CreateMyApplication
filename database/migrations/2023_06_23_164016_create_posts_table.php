@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('body', 200);
             $table->string('image_url')->nullable();
             $table->unsignedBigInteger('post_category_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

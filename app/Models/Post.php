@@ -13,16 +13,19 @@ class Post extends Model
         'title',
         'body',
         'image_url',
-        'category_id'
+        'post_category_id',
+        'user_id',
     ];
-    
-    public function getPaginateByLimit(int $limit_count = 15)
+    public function postcategory()   
+    {
+        return $this->belongsTo(PostCategory::class);  
+    }
+    function getPaginateByLimit(int $limit_count = 15)
     {
         return $this::with('postcategory')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
-    
-    public function postcategory()   
+    public function user()   
     {
-        return $this->belongTo(PostCategory::class);  
+        return $this->belongTo(User::class);  
     }
 }
