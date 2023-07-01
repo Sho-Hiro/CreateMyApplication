@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Blog Name</h1>
-        <form action="/posts" method="POST" enctype="multipart/form-data">
+        <form action="/myApplication/search_post" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="image">
                 <input type="file" name="image">
@@ -20,6 +20,14 @@
                 <h2>Body</h2>
                 <textarea name="post[body]" placeholder="本文を入力（最大3000文字以内）" value="{{ old('post.bocy') }}"></textarea>
                 <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+            </div>
+            <div class="category">
+                <h2>Category</h2>
+                <select name="post[post_category_id]">
+                    @foreach($postCategories as $postCategory)
+                        <option value="{{ $postCategory->id }}">{{ $postCategory->category_name }}</option>
+                    @endforeach
+                </select>
             </div>
             <input type="submit" value="store"/>
         </form>
