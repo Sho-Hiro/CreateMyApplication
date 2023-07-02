@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -21,41 +21,21 @@
         </style>
     </head>
     <body>
-       <h2 class="title">
-            @if($post->image_url)
-                <div>
-                    <img src="{{ $post->image_url }}" alt="画像が読み込めません。" width="300" height='300'/>
-                </div>
-            @endif
-        </h2>
+       <h1 class="title">投稿編集</h1>
         <div class="content">
-            <div class="category">
-                <h2>{{ $post->post_category->category_name }}</h2>
-            </div>
-            <div class="content__post">
-                <h2>{{$post->title}}</h2>
-                <p>{{ $post->body }}</p>    
-            </div>
-        </div>
-        
-        @if (auth()->id() == $post->user_id)
-            <div class="edit"><a href="/myApplication/search_post/{{ $post->id }}/post_edit">編集</a></div>
-            <div class="mb-4 text-center" style="margin-top:10px">
-                <form style="display: inline-block;"method="POST"
-                    action="/myApplication/search_post/{{$post->id}}"
-                    id="form_{{ $post->id }}"
-                >
+            <form action="/myApplication/search_post/{{ $post->id }}" method="POST">
                 @csrf
-                @method('DELETE')
-                <button class="btn btn-danger" onclick="deletePost">削除</button>
-                </form>
-            </div>
-        @endif
-        
-        <div class="footer">
-            <a href="/myApplication/search_post">戻る</a>
+                @method('PUT')
+                <div class='content__title'>
+                    <h2>タイトル</h2>
+                    <input type='text' name='post[title]' value="{{ $post->title }}">
+                </div>
+                <div class='content__body'>
+                    <h2>本文</h2>
+                    <input type='text' name='post[body]' value="{{ $post->body }}">
+                </div>
+                <input type="submit" value="編集完了">
+            </form>
         </div>
-        
-        <script src='js/post.js'></script>
     </body>
 </html>
