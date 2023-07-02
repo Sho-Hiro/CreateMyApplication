@@ -35,7 +35,18 @@ class PostController extends Controller
         $post->fill($input)->save();
         return redirect('/myApplication/search_post');
     }
-    public function delete(Post $post)
+    public function post_edit(Post $post)
+    {
+        return view('/myApplication/post_edit')->with(['post' => $post]);
+    }
+    public function post_update(PostRequest $request, Post $post)
+    {
+        $input_post = $request['post'];
+        $post->fill($input_post)->save();
+    
+        return redirect('/myApplication/search_post/' . $post->id);
+    }
+    public function post_delete(Post $post)
     {
         $post->delete();
         return redirect('/myApplication/search_post');
