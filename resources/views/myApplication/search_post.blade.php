@@ -27,11 +27,11 @@
                 <div class='post'>
                     @if($post->image_url)
                         <div>
-                            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                            <img src="{{ $post->image_url }}" alt="画像が読み込めません。" width="300" height="200">
                         </div>
                     @endif
-                    <h2 class='title'><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h2>
-                    <p class='body'>{{ $post->body }}</p>
+                    <h2 class='title'><a href="/myApplication/search_post/{{ $post->id }}">{{ $post->title }}</a></h2>
+                    <h2>{{ $post->post_category->category_name }}</h2>
                 </div>
             @endforeach
         </div>
