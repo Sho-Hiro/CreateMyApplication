@@ -14,9 +14,9 @@ class PostController extends Controller
     {
         return view('myApplication/search_post')->with(['posts' => $post->getPaginateByLimit()]);  
     }
-    public function search_comment(Post $post)
+    public function post_comment(Post $post)
     {
-        return view('myApplication/search_comment')->with(['post' => $post]);
+        return view('myApplication/post_comment')->with(['post' => $post]);
     }
      public function post_create(PostCategory $postCategory)
     {
@@ -33,6 +33,11 @@ class PostController extends Controller
         }
         
         $post->fill($input)->save();
+        return redirect('/myApplication/search_post');
+    }
+    public function delete(Post $post)
+    {
+        $post->delete();
         return redirect('/myApplication/search_post');
     }
 

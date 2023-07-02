@@ -21,29 +21,40 @@
         </style>
     </head>
     <body>
-        <div>
-            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
-        </div>
        <h2 class="title">
             @if($post->image_url)
                 <div>
-                    <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                    <img src="{{ $post->image_url }}" alt="画像が読み込めません。" width="300" height='300'/>
                 </div>
             @endif
         </h2>
         <div class="content">
             <div class="category">
-                <h3>{{ $post->category->name }}</h3>
+                <h2>{{ $post->post_category->category_name }}</h2>
             </div>
             <div class="content__post">
                 <h2>{{$post->title}}</h2>
                 <p>{{ $post->body }}</p>    
             </div>
         </div>
-        <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div>
-        <a href="/categories/{{$post->category->id}}">{{ $post->category->name }}</a>
+        
+        @if (auth()->id() == $post->user_id)
+            <div class="mb-4 text-center" style="margin-top:10px">
+                <form style="display: inline-block;"method="POST"
+                    action="/myApplication/search_post/{{$post->id}}"
+                    id="form_{{ $post->id }}"
+                >
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" onclick="deletePost">削除する</button>
+                </form>
+            </div>
+        @endif
+        
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/myApplication/search_post">戻る</a>
         </div>
+        
+        <script src='js/post.js'></script>
     </body>
 </html>

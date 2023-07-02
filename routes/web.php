@@ -39,7 +39,9 @@ Route::middleware('auth')->group(function () {
 // Route::get('/search', [SearchController::class, 'search'])->name('search')
 
 Route::get('/myApplication/search_post', [PostController::class,'search_post']);
-Route::post('/myApplication/search_post', [PostController::class,'post_store']);
 Route::get('/myApplication/post_create', [PostController::class,'post_create']);
+Route::post('/myApplication/search_post', [PostController::class,'post_store']);
+Route::get('/myApplication/search_post/{post}', [PostController::class,'post_comment']);
+Route::delete('/myApplication/search_post/{post}', [PostController::class,'delete']);
 Route::get('/myApplication/record_money', [RecordController::class,'record_money']);
 require __DIR__.'/auth.php';
