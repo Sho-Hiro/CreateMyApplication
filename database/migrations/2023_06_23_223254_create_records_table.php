@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 50);
+            $table->dateTime('recorded_at');
+            $table->string('resutaurant_name', 50);
+            $table->string('body', 50);
             $table->integer('money');
-            $table->timestamps();
+            $table->unsignedBigInteger('payment_category_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->softDeletes();
         });
     }

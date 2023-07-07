@@ -22,6 +22,54 @@
     </head>
     <body>
         <h2>FooPa</h2>
-        <h3>今までの合計使用金額</h3>
+        <header>
+            <h2>今までの合計使用金額</h2>
+        </header>
+        <!--登録項目-->
+        <h2>データ登録</h3>
+        <form action="/myApplication/record_money" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="name">
+                <input type="text" name="record[resutaurant_name]" placeholder="登録する店名を入力" value="{{ old('record.resutaurant_name') }}"/>
+                <p class="title__error" style="color:red">{{ $errors->first('record.resutaurant_name') }}</p>
+            </div>
+            <div class="body">
+                <textarea name="record[body]" placeholder="登録する内容を入力" value="{{ old('record.body') }}"></textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('record.body') }}</p>
+            </div>
+            <div class="category">
+                <h3>支払い方法を入力</h3>
+                <select name="record[payment_category_id]">
+                    @foreach($paymentCategories as $paymentCategory)
+                        <option value="{{ $paymentCategory->id }}">{{ $paymentCategory->payment_category_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <input type="submit" value="store"/>
+        </form>
+        <div class='records_money'>
+            <tr>
+                <th>日付</th>
+                <th>店名</th>
+                <th>金額</th>
+                <th>支払い方法</th>
+            </tr>
+            @if (auth()->id() == $records->user_id)
+                @foreach ($records as $record)
+                    <div class='record_money'>
+                        <td>{{ $record->recorded_at }}</td>
+                        <td>{{ $record->resutaurant_name }}</td>
+                        <td>{{ $record->money}}</td>
+                        <td>{{ $record->payment_category->payment_category_name }}</td>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+        <div class='paginate'>
+            {{ $records->links() }}
+        </div>
+        
+        
+       
     </body>
 </html>

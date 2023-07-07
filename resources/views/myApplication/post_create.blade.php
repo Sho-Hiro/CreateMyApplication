@@ -12,17 +12,15 @@
                 <input type="file" name="image">
             </div>
             <div class="title">
-                <h2>Title</h2>
                 <input type="text" name="post[title]" placeholder="タイトルを入力（50字以内）" value="{{ old('post.title') }}"/>
                 <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
             </div>
             <div class="body">
-                <h2>Body</h2>
                 <textarea name="post[body]" placeholder="本文を入力（最大3000文字以内）" value="{{ old('post.bocy') }}"></textarea>
                 <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             </div>
             <div class="category">
-                <h2>Category</h2>
+                <h2>お店のジャンル</h2>
                 <select name="post[post_category_id]">
                     @foreach($postCategories as $postCategory)
                         <option value="{{ $postCategory->id }}">{{ $postCategory->category_name }}</option>
