@@ -54,16 +54,17 @@
                 <th>金額</th>
                 <th>支払い方法</th>
             </tr>
-            @if (auth()->id() == $records->user_id)
-                @foreach ($records as $record)
+            
+            @foreach ($records as $record)
+                @if (auth()->id() == $records->user_id)
                     <div class='record_money'>
                         <td>{{ $record->recorded_at }}</td>
                         <td>{{ $record->resutaurant_name }}</td>
                         <td>{{ $record->money}}</td>
                         <td>{{ $record->payment_category->payment_category_name }}</td>
                     </div>
-                @endforeach
-            @endif
+                @endif
+            @endforeach
         </div>
         <div class='paginate'>
             {{ $records->links() }}

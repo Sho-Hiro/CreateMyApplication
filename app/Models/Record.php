@@ -24,12 +24,10 @@ class Record extends Model
     {
         return $this::with('payment_category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
-    public function getByUser(int $limit_count = 5)
-    {
-         return $this->posts()->with('user_id')->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
+    
     public function user()   
     {
         return $this->belongsTo(User::class);  
     }
+    
 }
