@@ -37,6 +37,9 @@
                 <textarea name="record[body]" placeholder="登録する内容を入力" value="{{ old('record.body') }}"></textarea>
                 <p class="body__error" style="color:red">{{ $errors->first('record.body') }}</p>
             </div>
+            <div class='money'>
+                <input type="text" name="record[money]" placeholder="金額を入力" value="{{ old('record.money') }}"/>
+            </div>
             <div class="category">
                 <h3>支払い方法を入力</h3>
                 <select name="record[payment_category_id]">
@@ -56,7 +59,7 @@
             </tr>
             
             @foreach ($records as $record)
-                @if (auth()->id() == $records->user_id)
+                @if (auth()->id() == $record->user_id)
                     <div class='record_money'>
                         <td>{{ $record->recorded_at }}</td>
                         <td>{{ $record->resutaurant_name }}</td>
@@ -66,9 +69,7 @@
                 @endif
             @endforeach
         </div>
-        <div class='paginate'>
-            {{ $records->links() }}
-        </div>
+        
         
         
        

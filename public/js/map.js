@@ -3,41 +3,71 @@ var infowindow;
 var google;
 var createMarker;
 var navigator;
-
-
 let map, infoWindow;
 
+// 初回で現在地を取得して反映
 function initMap() {
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          var current_lat=position.coords.latitude;
-          var current_lng=position.coords.longitude;
-        },
-       
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  map = new google.maps.Map(document.getElementById("map"), {
-    
-    center: { lat:0, lng: 0 },
-    zoom: 13,
-  });
-  infoWindow = new google.maps.InfoWindow();
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const latitube = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
+        // LatLngは中心を指定するクラス
+        const latlng = new google.maps.LatLng(latitube, longitude); //中心の緯度, 経度
+
+        // new google.maps.Map で新規マップ作成
+        // オプションでズームとか真ん中とか設定できる
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14, //ズームの調整
+          center: latlng, // 中心の設定
+        });
+
+        // 地図上の赤いマーカーの場所
+        new google.maps.Marker({
+          position: latlng,
+          map: map,
+        });
+      },
+      function (error) {
+        alert("エラーです！");
+      }
+    );
+  } else {
+    alert("このブウラウザは位置情報に対応していません。");
+  }
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
-}
+// ボタンを押すと現在地を反映
+const getNow = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const map = new google.maps.Map(document.getElementById("map"));
 
-window.initMap = initMap;
+        const latitube = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
+        const latlng = new google.maps.LatLng(latitube, longitude);
+
+        const opts = {
+          zoom: 13,
+          center: latlng,
+        };
+
+        new google.maps.Marker({
+          position: latlng,
+          map: map,
+        });
+
+        // setOptionでオプションを上書き反映
+        map.setOptions(opts);
+      },
+      function (error) {
+        alert("エラーです！");
+      }
+    );
+  } else {
+    alert("このブウラウザは位置情報に対応していません。");
+  }
+};
