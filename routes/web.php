@@ -24,11 +24,11 @@ use App\Http\Controllers\SearchController;
 Route::get('/', function () {
     return view('myApplication/home');
 });
-Route::get('/dashboard', function () {
-    $api_key = config('app.api_key');
-    // return view('dashboard');
-    return view('/myApplication/search-restaurant')->with(['api_key' => $api_key]); //ログイン後search-restaurantに移動
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     $api_key = config('app.api_key');
+//     // return view('dashboard');
+//     return view('/myApplication/search-restaurant')->with(['api_key' => $api_key]); //ログイン後search-restaurantに移動
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
 });
 // Route::get('/myApplication/search-restaurant', [PostController::class,'mapApi']);
 // Route::get('/search', [SearchController::class, 'search'])->name('search')
-
+Route::get('/index', [SearchController::class,'index']);
 Route::get('/myApplication/search_post', [PostController::class,'search_post']);
 Route::get('/myApplication/post_create', [PostController::class,'post_create']);
 Route::post('/myApplication/search_post', [PostController::class,'post_store']);
@@ -45,7 +45,7 @@ Route::get('/myApplication/search_post/{post}', [PostController::class,'post_com
 Route::get('/myApplication/search_post/{post}/post_edit', [PostController::class, 'post_edit']);
 Route::put('/myApplication/search_post/{post}', [PostController::class, 'post_update']);
 Route::delete('/myApplication/search_post/{post}', [PostController::class,'post_delete']);
-Route::get('/myApplication/record_money', [RecordController::class,'record_money']);
-Route::post('/myApplication/record_money/{user}', [PostController::class,'post_store']);
+Route::get('/myApplication/record_money', [RecordController::class,'index']);
+Route::post('/myApplication/record_money', [RecordController::class,'store']);
 
 require __DIR__.'/auth.php';

@@ -7,11 +7,10 @@ use GuzzleHttp\Client;
 
 class SearchController extends Controller
 {
-    public function mapApi(){
+    public function index(){
 
         // .envのAPIキーを変数へ
         $api_key = config('app.api_key');
-    
         return view('myApplication/search-restaurant')->with(['api_key' => $api_key]);
     }
     public function search(Request $request)
