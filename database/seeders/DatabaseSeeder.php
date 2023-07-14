@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RecordMoneySeeder::class,
             PaymentSeeder::class,
+            PostCategorySeeder::class,
         ]);
         
     }

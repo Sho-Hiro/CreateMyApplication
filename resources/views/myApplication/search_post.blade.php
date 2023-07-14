@@ -21,6 +21,8 @@
         </style>
     </head>
     <body>
+        <a href=''>お気に入り</a>
+        <a href='/myApplication/search_post'>投稿</a>
        <a href='/myApplication/post_create'>投稿作成</a>
        <div class='posts'>
             @foreach ($posts as $post)

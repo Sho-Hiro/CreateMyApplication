@@ -22,6 +22,8 @@
     </head>
     <body>
         <h2>FooPa</h2>
+        <a href=''>お気に入り</a>
+        <a href='/myApplication/search_post'>投稿</a>
         <header>
             <h2>今までの合計使用金額</h2>
         </header>
@@ -65,13 +67,23 @@
                         <td>{{ $record->resutaurant_name }}</td>
                         <td>{{ $record->money}}</td>
                         <td>{{ $record->payment_category->payment_category_name }}</td>
+                        <form action="/myApplication/record_money/{{ $record->id }}" id="form_{{ $record->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="deleteRecord">delete</button> 
+                        </form>
                     </div>
                 @endif
             @endforeach
         </div>
+        <script>
+            function deleteRecord(id) {
+                'use strict'
         
-        
-        
-       
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
     </body>
 </html>

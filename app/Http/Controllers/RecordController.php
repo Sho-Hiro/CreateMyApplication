@@ -25,4 +25,9 @@ class RecordController extends Controller
         // return redirect('/myApplication/record_money/{user}');
         return redirect('/myApplication/record_money');
     }
+    public function delete(Record $record)
+    {
+        $record->delete();
+        return redirect('/myApplication/record_money');
+    }
 }
