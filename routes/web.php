@@ -47,5 +47,6 @@ Route::put('/myApplication/search_post/{post}', [PostController::class, 'post_up
 Route::delete('/myApplication/search_post/{post}', [PostController::class,'post_delete']);
 Route::get('/myApplication/record_money', [RecordController::class,'index']);
 Route::post('/myApplication/record_money', [RecordController::class,'store']);
+Route::delete('/myApplication/record_money/{record}', [RecordController::class,'delete']);
 
 require __DIR__.'/auth.php';

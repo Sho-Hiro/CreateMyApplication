@@ -55,7 +55,13 @@
         <div class="footer">
             <a href="/myApplication/search_post">戻る</a>
         </div>
-        
-        <script src='js/post.js'></script>
+        <script>
+            function deletePost(id) {
+            'use strict'
+    
+            if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                document.getElementById(`form_${id}`).submit();
+            }
+        </script>
     </body>
 </html>
