@@ -34,7 +34,7 @@
         <div id="map" style="height:300px"></div>
          
          
-        <form id="searchForm" action="/search">
+        <form id="searchForm" action="/myApplication/search_place">
           @csrf
           <input type="text" id="searchQuery" placeholder="検索キーワードを入力">
           <button type="submit">検索</button>
