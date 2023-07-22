@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\PaymentCategory;
 use App\Http\Requests\RecordMoneyRequest;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class RecordController extends Controller
 {

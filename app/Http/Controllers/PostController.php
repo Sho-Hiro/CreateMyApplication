@@ -7,6 +7,7 @@ use App\Models\PostCategory;
 use Cloudinary;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
