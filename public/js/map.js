@@ -5,16 +5,57 @@ var createMarker;
 var navigator;
 let map, infoWindow;
 
+if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+          position => {
+              const pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+              };
+              document.getElementById('lat').value = pos.lat;
+              document.getElementById('lon').value = pos.lng;
+          },
+          () => {
+              handleLocationError(true);
+          }
+      );
+  } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false);
+  }
+  function handleLocationError(browserHasGeolocation){
+      document.getElementById('error-message').innerHTML =
+          browserHasGeolocation
+              ? "エラー: Geolocation サービスに失敗しました。"
+              : "エラー: お使いのブラウザはGeolocationをサポートしていません。"
+  }
+// //Maps JavaScript API
+// function initMap() {
+//     var maps = document.querySelectorAll('.map');
+//     maps.forEach(function(mapElem) {
+//         var lat = parseFloat(mapElem.dataset.lat);
+//         var lng = parseFloat(mapElem.dataset.lng);
+//         var location = { lat: lat, lng: lng };
+//         var map = new google.maps.Map(mapElem, {
+//             zoom: 14,
+//             center: location
+//         });
+//         var marker = new google.maps.Marker({
+//             position: location,
+//             map: map
+//         });
+//     });
+// }
 // 初回で現在地を取得して反映
 function initMap() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       function (position) {
-        const latitube = position.coords.latitude;
+        const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
         // LatLngは中心を指定するクラス
-        const latlng = new google.maps.LatLng(latitube, longitude); //中心の緯度, 経度
+        const latlng = new google.maps.LatLng(latitude, longitude); //中心の緯度, 経度
 
         // new google.maps.Map で新規マップ作成
         // オプションでズームとか真ん中とか設定できる
@@ -28,6 +69,7 @@ function initMap() {
           position: latlng,
           map: map,
         });
+       
       },
       function (error) {
         alert("エラーです！");
