@@ -52,6 +52,7 @@
             </div>
             <input type="submit" value="store"/>
         </form>
+
         <div class='records_money'>
             <tr>
                 <th>日付</th>
