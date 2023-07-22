@@ -21,31 +21,20 @@
         </style>
     </head>
     <body>
-        <header>
-            <b>FooPa</b>
-        </header>
         
-        <div class='list'>
-            <a href=''>お気に入り</a>
-            <a href='/myApplication/search_post'>投稿</a>
-            <a href='/myApplication/record_money'>記録</a>
+       <div class='resutaurant'>
+            @foreach ($details as $detail)
+               <div id="map-{{ $loop->index }}" class="w-1/2 map p-4"  data-lat="{{ $detail['latitude'] }}" data-lng="{{ $detail['longitude'] }}" style="height: 400px;"></div>
+                <div class='detail'>
+                    <h2>{{ $detail['name'] }}</h2>
+                    
+                </div>
+            @endforeach
         </div>
         
-        <div id="map" style="height:300px"></div>
-         
-         
-        <form id="searchForm" action="/myApplication/search_place">
-          @csrf
-          <input type="text" id="searchQuery" name='searchWord' placeholder="検索キーワードを入力">
-          <input type="hidden" id="lat" name="lat"/>
-          <input type="hidden" id="lon" name="lon"/>
-          <button type="submit" id = 'search'>検索</button>
-        </form>
-        
-        
-        <div id="searchResults"></div> 
-        <!--Google Maps APIの読み込み（keyには自分のAPI_KEYを指定）-->
-        <script src='js/map.js'></script>
+        <script src="{{ asset('/js/resutaurant.js') }}"></script>
         <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{$api_key}}&callback=initMap" async defer></script>
+        
+       
     </body>
-</html>  
+</html>
