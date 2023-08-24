@@ -31,7 +31,7 @@
             <a href='/myApplication/record_money'>記録</a>
         </div>
         
-        <div id="map" style="height:300px"></div>
+        <div id="map" style="height:250px"></div>
          
          
         <form id="searchForm" action="/myApplication/search_place">

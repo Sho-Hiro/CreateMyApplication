@@ -19,6 +19,8 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        
+        <link rel="stylesheet" href="Favorite.css">
     </head>
     <body>
        <h2 class="title">
