@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
 
@@ -19,6 +20,31 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        <link rel="stylesheet" href="Favorite.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                let favoriet = $(".favorite-toggle");
+                
+                favorite.on('click', function(){
+                    let favoritePostId;
+                    
+                    $this = $(this);//iタグを代入
+                    favoritePostId = $this.data("post-id");
+                    
+                    $.ajax({
+                        url:'/favorite',
+                        headers: {
+                            'x-csrf-token':$('meta[name="csrf-token"]').attr('content')
+                        },
+                        method:'POST',
+                        data:{
+                            'post_id':favoritePostId//いいねした投稿のID送信
+                        },
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
         <a href=''>お気に入り</a>
@@ -27,6 +53,17 @@
        <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
+                    @if (!$review->isLikedBy(Auth::user()))
+                        <span class="favorites">
+                            <i class="fa-regular fa-heart favorite-toggle" data-post-id="{{ $posts->id }}"></i>
+                            <span class="favorite-counter">{{$posts->favorite_count}}</span>
+                        </span>
+                    @else
+                        <span class="favorites">
+                            <i class="fa-regular fa-heart favorite-toggle liked" data-review-id="{{ $posts->id }}"></i>
+                            <span class="favorite-counter">{{$posts->favorite_count}}</span>
+                        </span>
+                    @endif
                     @if($post->image_url)
                         <div>
                             <img src="{{ $post->image_url }}" alt="画像が読み込めません。" width="300" height="200">
@@ -40,5 +77,6 @@
         <div class='paginate'>
             {{ $posts->links() }}
         </div>
+    
     </body>
 </html>
